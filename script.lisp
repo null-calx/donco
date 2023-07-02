@@ -2,7 +2,7 @@
 
 (require :asdf)
 
-; (load "build/bundle.lisp")
+(load "build/bundle.lisp")
 
 (let ((found-dir
 	(make-pathname :directory (pathname-directory *load-pathname*))))

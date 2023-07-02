@@ -8,7 +8,7 @@ A DSL for writing database description and generating relevant files using the d
 
 ** Setup
 
-1. Install any ANSI lisp implementation (preferably [[https://www.sbcl.org][~sbcl~]]).
+1. Install any ANSI lisp implementation (preferably [[https://www.sbcl.org][sbcl]]).
 2. Install [[https://www.quicklisp.org/beta/][quicklisp]].
 3. Get ~:yason~ by evaluating ~(ql:quickload :yason)~.
 
