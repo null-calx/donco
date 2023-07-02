@@ -1,9 +1,12 @@
 (in-package :donco-sql)
 
 ;; (alexandria:define-constant)
-(eval-when  (:compile-toplevel)
-  (defconstant +initial-constraint+
-    "create extension if not exists \"uuid-ossp\";"))
+
+;; (eval-when  (:compile-toplevel)
+;;  (defconstant +initial-constraint+
+;;    "create extension if not exists \"uuid-ossp\";"))
+
+(defparameter +initial-constraint+ "create extension if not exists \"uuid-ossp\";")
 
 (defun parse-column (column)
   (format nil "~A ~A~@[ unique~*~]~@[ not null~*~]~@[ default ~A~]~@[ primary key~*~]"

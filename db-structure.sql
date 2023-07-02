@@ -1,4 +1,4 @@
-#<unbound>
+create extension if not exists "uuid-ossp";
 
 create table users (
   userid uuid default uuid_generate_v4 () primary key,
