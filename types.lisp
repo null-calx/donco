@@ -1,0 +1,20 @@
+(in-package :donco-types)
+
+(defun sql-type (type)
+  (cond ((eq type :uuid) "uuid")
+	((eq type :text) "text")
+	((eq type :integer) "integer")
+	((not type) "integer")
+	((listp type)
+	 (cond ((and (eq (first type) :array)
+		     (= (length type) 2))
+		(format nil "~A[]" (sql-type (second type))))
+	       (t (error "Unknow composite type '~A'." type))))
+	(t (error "Unknown type '~A'." type))))
+
+(defun make-type (i suffix)
+  (format nil "$~A~@[::~A~]" i suffix))
+
+(defun pg-query-type (type i)
+  (cond ((eq type :text) (make-type i "text"))
+	(t (make-type i nil))))

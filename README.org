@@ -1,0 +1,22 @@
+* donco
+
+A DSL for writing database description and generating relevant files using the description. Files generated:
+
+- ~db-structure.json~: A ~json~ representation of the database.
+- ~db-structure.sql~: PostgresQL commands to generate the database.
+- ~db-query.json~: A ~json~ file with relevant queries, for the npm package ~pg~ to use.
+
+** Setup
+
+1. Install any ANSI lisp implementation (preferably [[https://www.sbcl.org][~sbcl~]]).
+2. Install [[https://www.quicklisp.org/beta/][quicklisp]].
+3. Get ~:yason~ by evaluating ~(ql:quickload :yason)~.
+
+** Usage
+
+Now, either create a quicklisp library bundle:
+
+1. Evaluate ~(ql:quickload '(:yason) :to "build/")~ in this directory.
+2. Run ~./script.lisp~.
+
+Or, call ~(donco:main filename)~ however you want.
