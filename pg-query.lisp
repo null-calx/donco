@@ -55,17 +55,27 @@
 		    table-name))
       (let ((*i* 0))
 	(setf (gethash "selectItem" hashmap)
-	      (format nil "select * from ~A where ~A = ~A~{ ~A~};"
+	      (format nil "select ~A as poster, * from ~A~{ ~A~} where ~A = ~A;"
+		      poster
+		      table-name
+		      (joins table)
+		      pkey
+		      (pg-query-type :uuid (incf *i*)))))
+      (let ((*i* 0))
+	(setf (gethash "selectItemPoster" hashmap)
+	      (format nil "select ~A as ~A_poster from ~A where ~A = ~A;"
+		      poster
+		      table-name
 		      table-name
 		      pkey
-		      (pg-query-type :uuid (incf *i*))
-		      (joins table))))
+		      (pg-query-type :uuid (incf *i*)))))
       (let ((*i* 0))
 	(setf (gethash "insert" hashmap)
-	      (format nil "insert into ~A (~{~A~^, ~}) values (~{~A~^, ~});"
+	      (format nil "insert into ~A (~{~A~^, ~}) values (~{~A~^, ~}) returning ~A;"
 		      table-name
 		      column-name-list
-		      (type-list table))))
+		      (type-list table)
+		      pkey)))
       (let ((*i* 0))
 	(setf (gethash "update" hashmap)
 	      (format nil "update ~A set ~{~{~A = ~A~}~^, ~} where ~A = ~A;"
